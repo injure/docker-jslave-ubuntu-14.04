@@ -10,8 +10,8 @@ RUN apt-get -q clean -y && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*
 RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
     echo "jenkins:jenkins" | chpasswd
 
-COPY start-slave.sh /home/jenkins/start-slave.sh
+COPY start-slave.sh /home/jenkins/
+#VOLUME /home/jenkins
+USER jenkins
 WORKDIR /home/jenkins
-VOLUME /home/jenkins
-#USER jenkins
 CMD /home/jenkins/start-slave.sh
